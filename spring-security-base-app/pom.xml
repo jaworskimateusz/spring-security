@@ -11,8 +11,8 @@
 	<name>spring-security-demo</name>
 
 	<properties>
-		<springframework.version>5.0.2.RELEASE</springframework.version>
-
+		<springframework.version>5.1.1.RELEASE</springframework.version>
+		<springsecurity.version>5.1.1.RELEASE</springsecurity.version>
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
 	</properties>
@@ -31,6 +31,20 @@
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
 			<version>3.1.0</version>
+		</dependency>
+		
+		<!-- Add Spring Security (web) -->
+		<dependency>
+		  <groupId>org.springframework.security</groupId>
+		  <artifactId>spring-security-web</artifactId>
+		  <version>${springsecurity.version}</version>
+		</dependency>
+		
+		<!-- Add Spring Security (config) -->
+		<dependency>
+		  <groupId>org.springframework.security</groupId>
+		  <artifactId>spring-security-config</artifactId>
+		  <version>${springsecurity.version}</version>
 		</dependency>
 
 		<dependency>
