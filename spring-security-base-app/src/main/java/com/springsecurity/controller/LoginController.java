@@ -4,11 +4,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-public class SecurityController {
-
-	@GetMapping("/")
-	public String showHomePage() {
-		return "home";
-	}
+public class LoginController {
 	
+	@GetMapping("/login")
+	public String showLoginForm() {
+		return "login";
+	}
 }
