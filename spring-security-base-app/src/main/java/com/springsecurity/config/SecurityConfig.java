@@ -34,9 +34,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.authenticated()	 //any request to the app must be authenticated(must log in)
 			.and()
 			.formLogin()     	 //form customization 
-			.loginPage("/showLoginPage")    //show custom form
+			.loginPage("/login")    //show custom form
 			.loginProcessingUrl("/authenticateUser") //login form should POST data to this URL for processing (check id and password)
-			.permitAll();		 //allow everyone to see login page. No need to be logged in
+			.permitAll()		 //allow everyone to see login page. No need to be logged in
+			.and()
+			.logout()			 //logout support for default URL
+			.permitAll();
 	}
 
 }
