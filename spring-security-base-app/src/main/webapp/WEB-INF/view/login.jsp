@@ -7,6 +7,9 @@
 	<h2>Fast and furious members login page</h2>
 	<hr>
 	<form:form action="${pageContext.request.contextPath}/checkUser" method="POST" >
+		<c:if test="${param.error != null }" >
+			<p>You entered invalid username or password</p>
+		</c:if>
 		<p>
 			User name: <input type="text" name="username" >
 		</p>
