@@ -21,7 +21,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		
 		auth.inMemoryAuthentication()
 			.withUser(users.username("John").password("test123").roles("EMPLOYEE", "HR"))
-			.withUser(users.username("Mary").password("test123").roles("MANAGER"))
+			.withUser(users.username("Mary").password("test123").roles("MANAGER", "EMPLOYEE"))
 			.withUser(users.username("Su").password("test123").roles("ADMIN"));
 	}
 	
@@ -30,8 +30,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		
 		http.authorizeRequests() //restrict access basen od the HttpServletRequest
-			.anyRequest()		 //
-			.authenticated()	 //any request to the app must be authenticated(must log in)
+			.antMatchers("/").hasRole("EMPLOYEE")
+			.antMatchers("/leaders/**").hasRole("MANAGER")	
+			.antMatchers("/systems/**").hasRole("ADMIN")	
+								//.anyRequest()
+								//.authenticated() any request to the app must be authenticated(must log in)
 			.and()
 			.formLogin()     	 //form customization 
 			.loginPage("/login")    //show custom form

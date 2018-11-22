@@ -12,7 +12,8 @@
 	
 	<!-- Display current user id(who is logged in) -->
 	User: <security:authentication property="principal.username"/> <br>
-	Role(s): <security:authentication property="principal.authorities"/> <hr>
+	Role(s): <security:authentication property="principal.authorities"/> <br>
+	<a href="${pageContext.request.contextPath}/leaders">Leadership Meeting</a>(Only for Manager)<hr>
 	
 	<form:form action="${pageContext.request.contextPath}/logout" method="POST" >
 		<input type="submit" value="Logout" >

@@ -10,5 +10,10 @@ public class SecurityController {
 	public String showHomePage() {
 		return "home";
 	}
+	
+	@GetMapping("/leaders")
+	public String showLeadersPage() {
+		return "leaders";
+	}
 
 }
