@@ -11,4 +11,14 @@ public class SecurityController {
 		return "home";
 	}
 	
+	@GetMapping("/enemy")
+	public String showEnemyPage() {
+		return "enemy";
+	}
+	
+	@GetMapping("/crew")
+	public String showCrewPage() {
+		return "crew";
+	}
+	
 }

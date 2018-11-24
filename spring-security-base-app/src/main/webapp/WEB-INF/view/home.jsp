@@ -12,6 +12,8 @@
 	<br>
 	<security:authentication property="principal.username"/>
 	<security:authentication property="principal.authorities"/>
+	<a href="${pageContext.request.contextPath}/crew">Crew</a><br>
+	<a href="${pageContext.request.contextPath}/enemy">Enemy</a><br>
 	<form:form action="${pageContext.request.contextPath}/logout" method="POST">
 		<input type="submit" value="Logout"> 
 	</form:form>
