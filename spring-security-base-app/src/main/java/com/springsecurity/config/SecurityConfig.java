@@ -42,7 +42,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.permitAll()		 //allow everyone to see login page. No need to be logged in
 			.and()
 			.logout()			 //logout support for default URL
-			.permitAll();
+			.permitAll()
+			.and()
+			.exceptionHandling()
+			.accessDeniedPage("/access-denied");
 	}
 
 }

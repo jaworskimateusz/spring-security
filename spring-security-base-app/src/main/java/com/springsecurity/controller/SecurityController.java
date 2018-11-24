@@ -15,5 +15,10 @@ public class SecurityController {
 	public String showLeadersPage() {
 		return "leaders";
 	}
+	
+	@GetMapping("/systems")
+	public String showSystemsPage() {
+		return "systems";
+	}
 
 }
