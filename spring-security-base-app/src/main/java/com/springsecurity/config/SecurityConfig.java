@@ -24,8 +24,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
-			.antMatchers("/").hasRole("crew")
-			.antMatchers("/").hasRole("enemy")
+			.antMatchers("/").hasAnyRole("crew", "enemy")
 			.antMatchers("/crew/**").hasRole("crew")
 			.antMatchers("/enemy/**").hasRole("enemy")
 			.and()

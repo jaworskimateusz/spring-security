@@ -9,11 +9,15 @@
 	<h2>Fast and furious website</h2>
 	<hr>
 	<p>Home Page</p>
-	<br>
-	<security:authentication property="principal.username"/>
+	Logged as: <security:authentication property="principal.username"/> <br>
 	<security:authentication property="principal.authorities"/>
-	<a href="${pageContext.request.contextPath}/crew">Crew</a><br>
-	<a href="${pageContext.request.contextPath}/enemy">Enemy</a><br>
+	<security:authorize  access="hasRole('crew')">
+		<a href="${pageContext.request.contextPath}/crew">Crew</a>
+	</security:authorize>
+	<security:authorize  access="hasRole('enemy')">
+		<a href="${pageContext.request.contextPath}/enemy">Enemy</a><br>
+	</security:authorize>
+	<hr>
 	<form:form action="${pageContext.request.contextPath}/logout" method="POST">
 		<input type="submit" value="Logout"> 
 	</form:form>
