@@ -17,6 +17,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 
+
 @Configuration
 @EnableWebMvc
 @ComponentScan(basePackages="com.springsecurity")
@@ -32,7 +33,7 @@ public class ApplicationConfig {
 	
 	//define a bean for our security datasource
 	@Bean
-	public DataSource securityDataSourve() {
+	public DataSource securityDataSource() {
 		//create connection pool
 		ComboPooledDataSource securityDataSource
 			= new ComboPooledDataSource();
@@ -46,8 +47,20 @@ public class ApplicationConfig {
 		
 		logger.info(">> jdbc.url: " + env.getProperty("jdbc.url"));
 		logger.info(">> jdbc.user: " + env.getProperty("jdbc.user"));
-		//set connection pool 
+		
+		securityDataSource.setJdbcUrl(env.getProperty("jdbc.url"));
+		securityDataSource.setUser(env.getProperty("jdbc.user"));
+		securityDataSource.setPassword(env.getProperty("jdbc.password"));
+		securityDataSource.setInitialPoolSize(getIntProperty("connection.pool.initialPoolSize"));
+		securityDataSource.setMinPoolSize(getIntProperty("connection.pool.minPoolSize"));
+		securityDataSource.setMaxPoolSize(getIntProperty("connection.pool.maxPoolSize"));
+		securityDataSource.setMaxIdleTime(getIntProperty("connection.pool.maxIdleTime"));
+		
 		return securityDataSource;
+	}
+	//read environment property and convert to int
+	private int getIntProperty(String propertyName) {
+		return Integer.parseInt(env.getProperty(propertyName));
 	}
 	
 	//define a bean for ViewResolver
