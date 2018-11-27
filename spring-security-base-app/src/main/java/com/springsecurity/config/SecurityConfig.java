@@ -29,7 +29,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.antMatchers("/enemy/**").hasRole("ENEMY")
 			.and()
 			.formLogin()
-			.loginPage("/login-form")
 			.loginProcessingUrl("/checkUser")
 			.permitAll()
 			.and()
