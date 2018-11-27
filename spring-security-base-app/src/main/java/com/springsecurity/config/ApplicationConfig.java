@@ -29,19 +29,36 @@ public class ApplicationConfig {
 	private Logger logger = Logger.getLogger(getClass().getName());
 	
 	@Bean
-	public DataSource securityDatasource() {
-		ComboPooledDataSource securityDataSource
-			= new ComboPooledDataSource();
+	public DataSource securityDataSource() {
+		ComboPooledDataSource securityDataSource = new ComboPooledDataSource();
 		try {
 			securityDataSource.setDriverClass(env.getProperty("jdbc.driver"));
 		} catch(PropertyVetoException e) {
 			throw new RuntimeException(e);
 		}
-		logger.info(">> JDBC user is: " + env.getProperty("jdbc.user"));
+		setJDBCConnectionProperties(securityDataSource);
+		setConnectionPoolProperties(securityDataSource);
 		return securityDataSource;
 	}
 	
-	//define a bean for ViewResolver
+	private void setJDBCConnectionProperties(ComboPooledDataSource securityDataSource) {
+		securityDataSource.setJdbcUrl(env.getProperty("jdbc.url"));
+		securityDataSource.setUser(env.getProperty("jdbc.user"));
+		securityDataSource.setPassword(env.getProperty("jdbc.password"));
+	}
+
+	private void setConnectionPoolProperties(ComboPooledDataSource securityDataSource) {
+		
+		securityDataSource.setInitialPoolSize(parseToInt("connection.pool.initialPoolSize"));
+		securityDataSource.setMinPoolSize(parseToInt("connection.pool.minPoolSize"));
+		securityDataSource.setMaxPoolSize(parseToInt("connection.pool.maxPoolSize"));
+		securityDataSource.setMaxIdleTime(parseToInt("connection.pool.maxIdleTime"));
+	}
+
+	private int parseToInt(String property) {
+		return Integer.parseInt(env.getProperty(property));
+	}
+	
 	@Bean
 	public ViewResolver viewResolver() {
 		InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();

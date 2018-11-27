@@ -11,10 +11,10 @@
 	<p>Home Page</p>
 	Logged as: <security:authentication property="principal.username"/> <br>
 	<security:authentication property="principal.authorities"/>
-	<security:authorize  access="hasRole('crew')">
+	<security:authorize  access="hasRole('CREW')">
 		<a href="${pageContext.request.contextPath}/crew">Crew</a>
 	</security:authorize>
-	<security:authorize  access="hasRole('enemy')">
+	<security:authorize  access="hasRole('ENEMY')">
 		<a href="${pageContext.request.contextPath}/enemy">Enemy</a><br>
 	</security:authorize>
 	<hr>
